@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Gas Technician Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold mb-3" style="color: #2A363B;">Gas Technician Study Dashboard</h1>
+            <p class="text-lg text-gray-600">Unit 3: Fuel Properties, Gas Laws & Combustion Principles</p>
+        </header>
+
+        <!-- Overview Cards & Chart -->
+        <section id="overview" class="mb-16"></section>
+
+        <!-- Navigation Tabs -->
+        <nav class="sticky top-0 bg-[#FDFBF8]/95 backdrop-blur-sm z-10 mb-10 border-b shadow-sm">
+            <div class="flex justify-center flex-wrap gap-2 sm:gap-4 py-3" id="nav-tabs"></div>
+        </nav>
+
+        <main>
+            <!-- Concept Explorer Tab -->
+            <section id="explorer" class="tab-content active mb-16">
+                <h2 class="text-3xl font-bold text-center mb-2">Concept Explorer</h2>
+                <p class="text-center text-gray-600 mb-8">Filter and explore all core concepts. Click any card to see details.</p>
+                <div class="flex justify-center mb-8">
+                    <div id="filters" class="flex flex-wrap justify-center gap-2 p-2 bg-white rounded-full shadow-sm"></div>
+                </div>
+                <div id="concept-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div id="details-display" class="mt-8">
+                    <div id="details-content" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg"></div>
+                </div>
+            </section>
+
+            <!-- Fuel Properties Tab -->
+            <section id="fuel-table" class="tab-content mb-16"></section>
+
+            <!-- Strategy Tab -->
+            <section id="strategy" class="tab-content mb-16"></section>
+
+            <!-- Action Plan Tab -->
+            <section id="action-plan" class="tab-content mb-16"></section>
+
+            <!-- Furnace Diagram Tab -->
+            <section id="furnace-diagram" class="tab-content mb-16"></section>
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-500 border-t pt-6">
+            <p>This interactive dashboard is a dynamic study tool for Gas Technician concepts.</p>
+            <p>Information is based on standard industry principles and CSA B149.1 code.</p>
+        </footer>
+    </div>
+
+    <!-- Load modules in order -->
+    <script type="module" src="js/config/constants.js"></script>
+    <script type="module" src="js/data/conceptsData.js"></script>
+    <script type="module" src="js/utils/formatters.js"></script>
+    <script type="module" src="js/services/ChartService.js"></script>
+    <script type="module" src="js/components/OverviewSection.js"></script>
+    <script type="module" src="js/components/NavigationTabs.js"></script>
+    <script type="module" src="js/components/ConceptCard.js"></script>
+    <script type="module" src="js/components/ConceptDetails.js"></script>
+    <script type="module" src="js/components/FuelTable.js"></script>
+    <script type="module" src="js/components/StrategySection.js"></script>
+    <script type="module" src="js/components/ActionPlan.js"></script>
+    <script type="module" src="js/components/FurnaceDiagram.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLID Architecture Diagram</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+        .architecture {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .layer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #dee2e6;
+        }
+        .layer-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #6c757d;
+        }
+        .module {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .module:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+        }
+        .config { border-left-color: #28a745; }
+        .data { border-left-color: #ffc107; }
+        .utils { border-left-color: #17a2b8; }
+        .service { border-left-color: #6f42c1; }
+        .component { border-left-color: #fd7e14; }
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .principle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .principle-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .principle-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .flow-arrow {
+            text-align: center;
+            font-size: 48px;
+            color: #6c757d;
+            grid-column: span 4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ Gas Technician Dashboard - SOLID Architecture</h1>
+        
+        <div class="architecture">
+            <!-- Layer 1: Configuration -->
+            <div class="layer">
+                <div class="layer-title">📋 Configuration</div>
+                <div class="module config">
+                    <strong>constants.js</strong><br>
+                    <small>Colors, Tabs, Filters</small>
+                </div>
+                <div style="font-size: 11px; margin-top: 15px; color: #6c757d;">
+                    ✓ Single source of truth<br>
+                    ✓ Easy to modify<br>
+                    ✓ No hardcoded values
+                </div>
+            </div>
+
+            <!-- Layer 2: Data -->
+            <div class="layer">
+                <div class="layer-title">💾 Data Layer</div>
+                <div class="module data">
+                    <strong>conceptsData.js</strong><br>
+                    <small>All concept information</small>
+                </div>
+                <div style="font-size: 11px; margin-top: 15px; color: #6c757d;">
+                    ✓ Separated from logic<br>
+                    ✓ Easy to update<br>
+                    ✓ Reusable structure
+                </div>
+            </div>
+
+            <!-- Layer 3: Utilities & Services -->
+            <div class="layer">
+                <div class="layer-title">🔧 Utils & Services</div>
+                <div class="module utils">
+                    <strong>formatters.js</strong><br>
+                    <small>Text formatting</small>
+                </div>
+                <div class="module service">
+                    <strong>ChartService.js</strong><br>
+                    <small>Chart management</small>
+                </div>
+                <div style="font-size: 11px; margin-top: 15px; color: #6c757d;">
+                    ✓ Reusable functions<br>
+                    ✓ Centralized logic<br>
+                    ✓ Easy to test
+                </div>
+            </div>
+
+            <!-- Layer 4: Components -->
+            <div class="layer">
+                <div class="layer-title">🧩 Components</div>
+                <div class="module component">
+                    <strong>OverviewSection</strong>
+                </div>
+                <div class="module component">
+                    <strong>NavigationTabs</strong>
+                </div>
+                <div class="module component">
+                    <strong>ConceptCard</strong>
+                </div>
+                <div class="module component">
+                    <strong>ConceptDetails</strong>
+                </div>
+                <div class="module component">
+                    <strong>FuelTable</strong>
+                </div>
+                <div class="module component">
+                    <strong>StrategySection</strong>
+                </div>
+                <div class="module component">
+                    <strong>ActionPlan</strong>
+                </div>
+                <div class="module component">
+                    <strong>FurnaceDiagram</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="flow-arrow">↓</div>
+
+        <div style="text-align: center; background: #e9ecef; padding: 30px; border-radius: 10px; margin: 20px 0;">
+            <h2 style="margin: 0 0 10px 0; color: #2c3e50;">🎯 Main Application (app.js)</h2>
+            <p style="margin: 0; color: #6c757d;">Orchestrates all components using Dependency Injection</p>
+        </div>
+
+        <h2 style="text-align: center; margin: 40px 0 20px 0; color: #2c3e50;">SOLID Principles Applied</h2>
+        
+        <div class="principles">
+            <div class="principle">
+                <div class="principle-title">S</div>
+                <div class="principle-desc">
+                    Single Responsibility<br><br>
+                    Each module does one thing well
+                </div>
+            </div>
+            <div class="principle">
+                <div class="principle-title">O</div>
+                <div class="principle-desc">
+                    Open/Closed<br><br>
+                    Easy to extend without modifying
+                </div>
+            </div>
+            <div class="principle">
+                <div class="principle-title">L</div>
+                <div class="principle-desc">
+                    Liskov Substitution<br><br>
+                    Components are interchangeable
+                </div>
+            </div>
+            <div class="principle">
+                <div class="principle-title">I</div>
+                <div class="principle-desc">
+                    Interface Segregation<br><br>
+                    Only expose needed methods
+                </div>
+            </div>
+            <div class="principle">
+                <div class="principle-title">D</div>
+                <div class="principle-desc">
+                    Dependency Inversion<br><br>
+                    Depend on abstractions
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #d4edda; border-left: 4px solid #28a745; border-radius: 8px;">
+            <h3 style="margin: 0 0 10px 0; color: #155724;">✅ Benefits Achieved</h3>
+            <ul style="margin: 0; color: #155724;">
+                <li><strong>Maintainability:</strong> Changes are isolated and predictable</li>
+                <li><strong>Scalability:</strong> New features don't break existing code</li>
+                <li><strong>Testability:</strong> Each component can be tested independently</li>
+                <li><strong>Readability:</strong> Clear structure and organization</li>
+                <li><strong>Reusability:</strong> Components can be used in other projects</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+            <h3 style="margin: 0 0 10px 0; color: #856404;">📊 Code Metrics Comparison</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6;">Metric</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 2px solid #dee2e6;">Before</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 2px solid #dee2e6;">After</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">Files</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6;">1 monolithic file</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6; color: #28a745; font-weight: bold;">14 focused files</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">Largest File Size</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6;">800+ lines</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6; color: #28a745; font-weight: bold;">~200 lines max</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">Code Organization</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6;">Mixed concerns</td>
+                    <td style="padding: 10px; text-align: center; border-bottom: 1px solid #dee2e6; color: #28a745; font-weight: bold;">Clear separation</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">Maintainability Score</td>
+                    <td style="padding: 10px; text-align: center;">⭐⭐</td>
+                    <td style="padding: 10px; text-align: center; color: #28a745; font-weight: bold;">⭐⭐⭐⭐⭐</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
