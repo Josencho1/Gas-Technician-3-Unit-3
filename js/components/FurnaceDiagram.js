@@ -1,6 +1,9 @@
 // Furnace Diagram Component
 // Single Responsibility: Render furnace dilution air diagram with SVG
 
+import { Logger } from '../utils/logger.js';
+import { ErrorHandler } from '../utils/errorHandler.js';
+
 export class FurnaceDiagram {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -12,17 +15,21 @@ export class FurnaceDiagram {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = `
-            <h2 class="text-3xl font-bold text-center mb-2">Furnace Dilution Air Diagram</h2>
-            <p class="text-center text-gray-600 mb-8">Visualizing airflow, combustion, and dilution in a gas furnace.</p>
+        try {
+            this.container.innerHTML = `
+                <h2 class="text-3xl font-bold text-center mb-2">Furnace Dilution Air Diagram</h2>
+                <p class="text-center text-gray-600 mb-8">Visualizing airflow, combustion, and dilution in a gas furnace.</p>
 
-            <div class="bg-white rounded-lg shadow-sm p-6 border-t-4 border-[#2A363B]">
-                <div class="w-full max-w-3xl mx-auto mb-8">
-                    ${this.createDiagramSvg()}
+                <div class="bg-white rounded-lg shadow-sm p-6 border-t-4 border-[#2A363B]" role="region" aria-label="Furnace diagram">
+                    <div class="w-full max-w-3xl mx-auto mb-8">
+                        ${this.createDiagramSvg()}
+                    </div>
+                    ${this.createExplanation()}
                 </div>
-                ${this.createExplanation()}
-            </div>
-        `;
+            `;
+        } catch (error) {
+            ErrorHandler.handleError(error, 'FurnaceDiagram.render');
+        }
     }
 
     /**
@@ -201,5 +208,12 @@ export class FurnaceDiagram {
                 </ul>
             </div>
         `;
+    }
+
+    /**
+     * Destroys the component (no cleanup needed for this component)
+     */
+    destroy() {
+        Logger.debug('FurnaceDiagram destroyed');
     }
 }
