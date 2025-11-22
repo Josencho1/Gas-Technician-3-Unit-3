@@ -1,6 +1,10 @@
 // Data model for all concepts
 // Single Responsibility: Data storage and structure
 
+import { ConceptValidator } from '../utils/validator.js';
+import { Logger } from '../utils/logger.js';
+import { ErrorHandler } from '../utils/errorHandler.js';
+
 export const conceptsData = [
     // FUEL TYPES
     {
@@ -208,3 +212,11 @@ export const conceptsData = [
         description: 'The speed at which a flame front moves through a gas-air mixture. Burners are designed with gas velocity higher than flame speed to prevent flashback.'
     }
 ];
+
+// Validate data on load
+try {
+    ConceptValidator.validateAll(conceptsData);
+} catch (error) {
+    ErrorHandler.handleError(error, 'conceptsData validation', true);
+    Logger.error('Concepts data validation failed', error);
+}

@@ -1,7 +1,9 @@
 // Fuel Table Component
 // Single Responsibility: Render fuel properties comparison table
 
-import { formatFormulas } from '../utils/formatters.js';
+import { formatFormulas, escapeHtml } from '../utils/formatters.js';
+import { Logger } from '../utils/logger.js';
+import { ErrorHandler } from '../utils/errorHandler.js';
 
 export class FuelTable {
     constructor(containerId) {
@@ -14,16 +16,20 @@ export class FuelTable {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = `
-            <h2 class="text-3xl font-bold text-center mb-2">Fuel Properties Comparison</h2>
-            <p class="text-center text-gray-600 mb-8">Detailed comparison of Natural Gas, Propane, and Butane.</p>
+        try {
+            this.container.innerHTML = `
+                <h2 class="text-3xl font-bold text-center mb-2">Fuel Properties Comparison</h2>
+                <p class="text-center text-gray-600 mb-8">Detailed comparison of Natural Gas, Propane, and Butane.</p>
 
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden border-t-4 border-[#D95B43]">
-                <div class="overflow-x-auto">
-                    ${this.createTableHtml()}
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border-t-4 border-[#D95B43]" role="region" aria-label="Fuel properties table">
+                    <div class="overflow-x-auto">
+                        ${this.createTableHtml()}
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        } catch (error) {
+            ErrorHandler.handleError(error, 'FuelTable.render');
+        }
     }
 
     /**
@@ -53,10 +59,10 @@ export class FuelTable {
      */
     createTableHeader() {
         const headers = ['Property', 'Natural Gas', 'Propane', 'Butane'];
-        
+
         return headers.map((header, index) => {
             const colorClass = index === 0 ? '' : 'text-[#D95B43]';
-            return `<th class="px-6 py-4 font-bold uppercase tracking-wider ${colorClass}">${header}</th>`;
+            return `<th scope="col" class="px-6 py-4 font-bold uppercase tracking-wider ${colorClass}">${escapeHtml(header)}</th>`;
         }).join('');
     }
 
@@ -113,15 +119,22 @@ export class FuelTable {
     createTableRows(data) {
         return data.map((row, index) => {
             const rowClass = index % 2 === 0 ? 'hover:bg-gray-50' : 'bg-gray-50/50 hover:bg-gray-50';
-            
+
             return `
                 <tr class="${rowClass}">
-                    <td class="px-6 py-3 font-medium">${row.property}</td>
+                    <th scope="row" class="px-6 py-3 font-medium">${escapeHtml(row.property)}</th>
                     <td class="px-6 py-3">${formatFormulas(row.naturalGas)}</td>
                     <td class="px-6 py-3">${formatFormulas(row.propane)}</td>
                     <td class="px-6 py-3">${formatFormulas(row.butane)}</td>
                 </tr>
             `;
         }).join('');
+    }
+
+    /**
+     * Destroys the component (no cleanup needed for this component)
+     */
+    destroy() {
+        Logger.debug('FuelTable destroyed');
     }
 }

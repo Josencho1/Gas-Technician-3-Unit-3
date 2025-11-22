@@ -1,6 +1,10 @@
 // Action Plan Component
 // Single Responsibility: Render key safety and service takeaways
 
+import { escapeHtml } from '../utils/formatters.js';
+import { Logger } from '../utils/logger.js';
+import { ErrorHandler } from '../utils/errorHandler.js';
+
 export class ActionPlan {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -12,14 +16,18 @@ export class ActionPlan {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = `
-            <h2 class="text-3xl font-bold text-center mb-2">Key Safety & Service Takeaways</h2>
-            <p class="text-center text-gray-600 mb-8">The top 5 most critical concepts for field application.</p>
+        try {
+            this.container.innerHTML = `
+                <h2 class="text-3xl font-bold text-center mb-2">Key Safety & Service Takeaways</h2>
+                <p class="text-center text-gray-600 mb-8">The top 5 most critical concepts for field application.</p>
 
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 space-y-4">
-                ${this.renderTakeaways()}
-            </div>
-        `;
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 space-y-4" role="region" aria-label="Safety and service takeaways">
+                    ${this.renderTakeaways()}
+                </div>
+            `;
+        } catch (error) {
+            ErrorHandler.handleError(error, 'ActionPlan.render');
+        }
     }
 
     /**
@@ -67,10 +75,20 @@ export class ActionPlan {
      */
     renderTakeaways() {
         return this.getTakeaways().map(takeaway => `
-            <div class="p-4 rounded-md border-l-4 bg-gray-50" style="border-color: ${takeaway.color}">
-                <h3 class="font-bold text-lg">${takeaway.number}. ${takeaway.title}</h3>
-                <p class="text-gray-700">${takeaway.description}</p>
+            <div class="p-4 rounded-md border-l-4 bg-gray-50"
+                 style="border-color: ${escapeHtml(takeaway.color)}"
+                 role="article"
+                 aria-label="Takeaway ${takeaway.number}">
+                <h3 class="font-bold text-lg">${takeaway.number}. ${escapeHtml(takeaway.title)}</h3>
+                <p class="text-gray-700">${escapeHtml(takeaway.description)}</p>
             </div>
         `).join('');
+    }
+
+    /**
+     * Destroys the component (no cleanup needed for this component)
+     */
+    destroy() {
+        Logger.debug('ActionPlan destroyed');
     }
 }
