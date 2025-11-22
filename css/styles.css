@@ -1,0 +1,152 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FDFBF8;
+    color: #4A4A4A;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 350px;
+}
+
+.nav-link {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-link.active {
+    color: #D95B43;
+    border-bottom-color: #D95B43;
+}
+
+.concept-card {
+    transition: all 0.3s ease;
+    border-left-width: 4px;
+}
+
+.concept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#details-display {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+#details-display.show {
+    max-height: 2000px;
+    opacity: 1;
+    margin-bottom: 4rem;
+}
+
+/* Tab content visibility */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* SVG Diagram Styles */
+.label-main {
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    fill: #000;
+}
+
+.label-sub {
+    font-family: Arial;
+    font-size: 14px;
+    fill: #333;
+}
+
+.label-title {
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    fill: #000;
+    text-anchor: middle;
+}
+
+.casing {
+    fill: none;
+    stroke: #000;
+    stroke-width: 3;
+}
+
+.internal-wall {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2;
+}
+
+.thin-detail {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.5;
+}
+
+.burner-body {
+    fill: #333;
+    stroke: #000;
+}
+
+.flame {
+    fill: #000;
+}
+
+.blower-belt {
+    stroke: #000;
+    stroke-width: 4;
+    fill: none;
+}
+
+.pulley {
+    fill: #999;
+    stroke: #000;
+}
+
+.filter-rect {
+    fill: url(#crossHatch);
+    stroke: #000;
+    stroke-width: 2;
+}
+
+.flow-air {
+    fill: none;
+    stroke: #555;
+    stroke-width: 2;
+    stroke-dasharray: 6, 4;
+    marker-end: url(#arrow-grey);
+}
+
+.flow-exhaust {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2;
+    stroke-dasharray: 10, 5;
+    marker-end: url(#arrow-black);
+}
+
+.flow-intake {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2.5;
+    marker-end: url(#arrow-black);
+}
+
+.lead-line {
+    stroke: #000;
+    stroke-width: 1;
+    fill: none;
+}
