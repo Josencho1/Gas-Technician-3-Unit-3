@@ -210,6 +210,56 @@ export const conceptsData = [
         admin: 'CSA Code',
         benefit: 'NG: 12 in/s | Propane: 11 in/s',
         description: 'The speed at which a flame front moves through a gas-air mixture. Burners are designed with gas velocity higher than flame speed to prevent flashback.'
+    },
+    {
+        id: 'stoichiometric_ratio',
+        name: 'Stoichiometric Combustion (10:1 Ratio)',
+        tier: 'Combustion',
+        type: 'Combustion Theory',
+        focus: 'Perfect Combustion',
+        admin: 'CSA Code',
+        benefit: '1 ft³ CH₄ + 10 ft³ Air = Complete Combustion',
+        description: 'The theoretical perfect combustion ratio for natural gas. For every 1000 BTU of input, 10 cubic feet of air is required for complete combustion with no excess air. This 10:1 ratio represents stoichiometric (chemically perfect) combustion.'
+    },
+    {
+        id: 'combustion_air',
+        name: 'Combustion Air (Primary Air)',
+        tier: 'Combustion',
+        type: 'Air Requirement',
+        focus: 'Burner Operation',
+        admin: 'CSA Code',
+        benefit: '10 ft³ per 1000 BTU',
+        description: 'The air required to support combustion at the burner. Also called primary air, this is the minimum air needed for complete combustion based on the stoichiometric 10:1 ratio. Formula: 1000 BTU × 10 = 10 ft³ combustion air.'
+    },
+    {
+        id: 'excess_air',
+        name: 'Excess Air (Secondary Air)',
+        tier: 'Combustion',
+        type: 'Air Requirement',
+        focus: 'Combustion Efficiency',
+        admin: 'CSA Code',
+        benefit: '5 ft³ per 1000 BTU',
+        description: 'Additional air supplied beyond the stoichiometric requirement to ensure complete combustion. Excess air helps prevent CO formation and ensures all fuel is burned, but reduces efficiency if excessive. Formula: 1000 BTU × 5 = 5 ft³ excess air.'
+    },
+    {
+        id: 'dilution_air',
+        name: 'Dilution Air',
+        tier: 'Combustion',
+        type: 'Air Requirement',
+        focus: 'Draft Hood Operation',
+        admin: 'CSA Code',
+        benefit: '15 ft³ per 1000 BTU',
+        description: 'Air that enters through the draft hood to cool hot flue gases and create stable draft. This air does not participate in combustion but is essential for safe venting. Formula: 1000 BTU × 15 = 15 ft³ dilution air. See Furnace Diagram tab for visual reference.'
+    },
+    {
+        id: 'total_air',
+        name: 'Total Air Requirement',
+        tier: 'Combustion',
+        type: 'Air Requirement',
+        focus: 'System Design',
+        admin: 'CSA Code',
+        benefit: '30 ft³ per 1000 BTU',
+        description: 'The complete air requirement for a natural draft appliance combines all three air types. Formula: Combustion Air (10) + Excess Air (5) + Dilution Air (15) = 30 ft³ total air per 1000 BTU. This total ensures complete combustion, safety, and proper venting.'
     }
 ];
 
